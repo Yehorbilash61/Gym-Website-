@@ -1,4 +1,163 @@
-<h3>Trener personalny — 100 PLN/godz.</h3>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Fitness klub Titanium</title>
+    <style>
+        /* ===== Основные стили ===== */
+        body {
+            font-family: Tahoma, sans-serif;
+            background: linear-gradient(to bottom, #fffacd, #ffffff);
+            margin: 0;
+            padding: 0 20px;
+            color: #333;
+        }
+
+        h1 {
+                text-align: center;
+            font-family: 'Impact', Arial, sans-serif;
+            font-weight: 900;
+            background: linear-gradient(to right, #FFD700, #FFFFFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 48px;
+            margin-top: 20px;
+        }
+
+        h2 {
+            font-family: Verdana, sans-serif;
+            font-weight: bold;
+            color: #FFAA00;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-family: Tahoma, sans-serif;
+            font-size: 16px;
+        }
+
+        img.gym-photo {
+            width: 100%;
+            max-width: 600px;
+            display: block;
+            margin: 0 auto 20px auto;
+            border-radius: 10px;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        /* ===== Блок услуг ===== */
+        .usluga {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 15px;
+            background-color: #fffbea;
+            padding: 10px;
+            border-radius: 10px;
+            transition: transform 0.2s;
+        }
+
+        .usluga:hover {
+            transform: scale(1.03);
+        }
+
+        .usluga img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-right: 15px;
+                }
+
+        .usluga h3 {
+            font-family: Georgia, serif;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .info-box {
+            background-color: #fff8dc;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        /* ===== Форма ===== */
+        form {
+            background-color: #fffbea;
+            padding: 15px;
+            border-radius: 10px;
+            max-width: 400px;
+        }
+
+        input, select, button {
+            font-size: 16px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        button {
+            background-color: black;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #333;
+        }
+
+        #info-zapis {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+        <!-- ===== Header ===== -->
+    <header>
+        <h1>Fitness klub Titanium</h1>
+        <img src="gym.jpg" alt="Siłownia Titanium" class="gym-photo">
+    </header>
+
+    <!-- ===== Kontakt ===== -->
+    <section id="info">
+        <h2>Kontakt</h2>
+        <p>Telefon: +48 123 456 789</p>
+        <p>Adres: ul. Przykładowa 10, Gliwice</p>
+        <p>Miasto: Gliwice</p>
+    </section>
+
+    <!-- ===== Harmonogram ===== -->
+    <section id="schedule">
+        <h2>Harmonogram</h2>
+        <p>Pon–Pt: 7:00 – 22:00</p>
+        <p>Sob–Nd: 8:00 – 20:00</p>
+    </section>
+
+    <!-- ===== Usługi i ceny ===== -->
+    <section id="uslugi">
+        <h2>Usługi i ceny</h2>
+
+        <div class="usluga" onclick="pokazInfo('silownia')">
+            <img src="gym.jpg" alt="Siłownia Titanium">
+            <h3>Siłownia — 50 PLN/godz.</h3>
+        </div>
+
+        <div class="usluga" onclick="pokazInfo('zajecia')">
+            <img src="https://images.unsplash.com/photo-1594737625785-15702f4b0f2c?auto=format&fit=crop&w=600&q=80" alt="Zajęcia grupowe">
+            <h3>Zajęcia grupowe — 30 PLN/zaj.</h3>
+        </div>
+
+        <div class="usluga" onclick="pokazInfo('trener')">
+            <img src="gym.jpg" alt="Trener personalny">
+            <h3>Trener personalny — 100 PLN/godz.</h3>
         </div>
 
         <div class="usluga" onclick="pokazInfo('sauna')">
@@ -24,55 +183,66 @@
                 Trener:
                 <input type="checkbox" id="trainer"> Chcę trenera
             </label><br>
-            <label>
-                Metoda płatności:
-                <select id="payment">
-                    <option>Gotówka</option>
-                    <option>Karta</option>
-                </select>
-            </label><br>
-            <button type="button" onclick="zapisz()">Zapisz się</button>
-        </form>
+            <!-- ===== Header ===== -->
+    <header>
+        <h1>Fitness klub Titanium</h1>
+        <img src="gym.jpg" alt="Siłownia Titanium" class="gym-photo">
+    </header>
 
-        <div id="info-zapis"></div>
+    <!-- ===== Kontakt ===== -->
+    <section id="info">
+        <h2>Kontakt</h2>
+        <p>Telefon: +48 123 456 789</p>
+        <p>Adres: ul. Przykładowa 10, Gliwice</p>
+        <p>Miasto: Gliwice</p>
     </section>
 
-    <!-- ===== JS Скрипты ===== -->
-    <script>
-        // Функция для показа описания услуги
-        function pokazInfo(usluga) {
-            let info = document.getElementById('info-usluga');
-            switch(usluga) {
-                case 'silownia':
-                    info.innerHTML = "<strong>Siłownia:</strong> Wyposażona w nowoczesne maszyny, strefa cardio i siłowa. Idealna do treningów samodzielnych.";
-                    break;
-                case 'zajecia':
-                    info.innerHTML = "<strong>Zajęcia grupowe:</strong> Yoga, Zumba, Pilates. Prowadzone przez certyfikowanych instruktorów według harmonogramu.";
-                    break;
-                case 'trener':
-                    info.innerHTML = "<strong>Trener personalny:</strong> Indywidualny plan treningowy, kontrola techniki ćwiczeń, motywacja.";
-                    break;
-                case 'sauna':
-                    info.innerHTML = "<strong>Sauna:</strong> Relaks po treningu, poprawa krążenia i redukcja stresu.";
-                    break;
-                default:
-                    info.innerHTML = "Kliknij na usługę, aby zobaczyć opis.";
-            }
-        }
+    <!-- ===== Harmonogram ===== -->
+    <section id="schedule">
+        <h2>Harmonogram</h2>
+        <p>Pon–Pt: 7:00 – 22:00</p>
+        <p>Sob–Nd: 8:00 – 20:00</p>
+    </section>
 
-        // Функция для формы
-        function zapisz() {
-            const name = document.getElementById('name').value;
-            const trainer = document.getElementById('trainer').checked ? 'Tak' : 'Nie';
-            const payment = document.getElementById('payment').value;
+    <!-- ===== Usługi i ceny ===== -->
+    <section id="uslugi">
+        <h2>Usługi i ceny</h2>
 
-            const info = document.getElementById('info-zapis');
-            info.innerHTML = `<h3>Dziękujemy za zapisanie się!</h3>
-                              <p>Imię i nazwisko: ${name}</p>
-                              <p>Trener: ${trainer}</p>
-                              <p>Metoda płatności: ${payment}</p>`;
-        }
-    </script>
+        <div class="usluga" onclick="pokazInfo('silownia')">
+            <img src="gym.jpg" alt="Siłownia Titanium">
+            <h3>Siłownia — 50 PLN/godz.</h3>
+        </div>
 
-</body>
-</html>
+        <div class="usluga" onclick="pokazInfo('zajecia')">
+            <img src="https://images.unsplash.com/photo-1594737625785-15702f4b0f2c?auto=format&fit=crop&w=600&q=80" alt="Zajęcia grupowe">
+            <h3>Zajęcia grupowe — 30 PLN/zaj.</h3>
+        </div>
+
+        <div class="usluga" onclick="pokazInfo('trener')">
+            <img src="gym.jpg" alt="Trener personalny">
+            <h3>Trener personalny — 100 PLN/godz.</h3>
+        </div>
+
+        <div class="usluga" onclick="pokazInfo('sauna')">
+            <img src="https://images.unsplash.com/photo-1586201375761-83865001a7e0?auto=format&fit=crop&w=600&q=80" alt="Sauna">
+            <h3>Sauna — 20 PLN/godz.</h3>
+        </div>
+
+        <div id="info-usluga" class="info-box">
+            <p>Kliknij na usługę, aby zobaczyć opis.</p>
+        </div>
+    </section>
+
+    <!-- ===== Formularz zapisu ===== -->
+    <section id="signup">
+        <h2>Zapisz się na trening</h2>
+
+        <form id="formularz">
+            <label>
+                Imię i nazwisko:
+                <input type="text" id="name">
+            </label><br>
+            <label>
+                Trener:
+                <input type="checkbox" id="trainer"> Chcę trenera
+            </label><br>
