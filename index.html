@@ -96,4 +96,21 @@ function pokazInfo(usluga) {
         <p>Kliknij na usługę, aby zobaczyć opis.</p>
     </div>
 </section>
-    
+<form action="controller.php" method="post">
+    <label>
+        Imię i nazwisko:
+        <input type="text" name="name">
+    </label><br>
+    <label>
+        Trener:
+        <input type="checkbox" name="trainer"> Chcę trenera
+    </label><br>
+    <label>
+        Metoda płatności:
+        <select name="payment">
+            <option>Gotówka</option>
+            <option>Karta</option>
+        </select>
+    </label><br>
+    <button type="submit">Zapisz się</button>
+</form>    
