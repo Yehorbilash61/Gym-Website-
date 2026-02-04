@@ -67,3 +67,33 @@ button:hover {
     margin-bottom: 8px; /* отступ между услугами */
     font-size: 16px;
 }
+.service {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 15px;
+    background-color: #fffbea;
+    padding: 10px;
+    border-radius: 10px;
+    transition: transform 0.2s;
+}
+
+.service:hover {
+    transform: scale(1.03);
+}
+
+.service img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 15px;
+}
+
+.info-box {
+    background-color: #fff8dc;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 15px;
+    font-size: 16px;
+}
