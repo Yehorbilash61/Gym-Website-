@@ -1,32 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Titanium</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <h1>Siłownia Titanium</h1>
-        <img src="Gym1.jpg">
-    </header>
+<header>
+    <h1>Фитнес-клуб Titanium</h1>
+    <img src="gym.jpg" alt="Siłownia Titanium" class="gym-photo">
+</header>
+<section id="info">
+    <h2>Kontakt</h2>
+    <p>Telefon: +48 122 452 739</p>
+    <p>Adres: ul. pylchwicka 10, Gliwice</p>
+    <p>Miasto: Gliwice</p>
+</section>
+<section id="schedule">
+    <h2>Harmonogram</h2>
+    <p>Pon–Pt: 7:00 – 22:00</p>
+    <p>Sob–Nd: 8:00 – 20:00</p>
+</section>
+<section id="uslugi">
+    <h2>Usługi i ceny</h2>
 
-    <section id="info">
-        <h2>Dane kontaktowe</h2>
-        <p>Numer Telefonu: +48 625 455 709</p>
-        <p>Adres: ul. Pilchowicka 11/2, Gliwice</p>
-        <p>Miasto: Gliwice</p>
-    </section>
+    <div class="usluga" onclick="pokazInfo('silownia')">
+        <img src="gym.jpg" alt="Siłownia Titanium">
+        <h3>Siłownia — 50 PLN/godz.</h3>
+    </div>
 
-    <section id="schedule">
-        <h2>Grafik otwarcia:</h2>
-        <p>Po-Pi: 7:00 – 22:00</p>
-        <p>Sob-Nie: 8:00 – 20:00</p>
-    </section>
+    <div class="usluga" onclick="pokazInfo('zajecia')">
+        <img src="https://images.unsplash.com/photo-1594737625785-15702f4b0f2c?auto=format&fit=crop&w=600&q=80" alt="Zajęcia grupowe">
+        <h3>Zajęcia grupowe — 30 PLN/zaj.</h3>
+    </div>
 
-    <section id="signup">
-        <h2>Zapisz się na trening</h2>
-        <form>            
+    <div class="usluga" onclick="pokazInfo('trener')">
+        <img src="gym.jpg" alt="Trener personalny">
+        <h3>Trener personalny — 100 PLN/godz.</h3>
+    </div>
+
+    <div class="usluga" onclick="pokazInfo('sauna')">
+        <img src="https://images.unsplash.com/photo-1586201375761-83865001a7e0?auto=format&fit=crop&w=600&q=80" alt="Sauna">
+        <h3>Sauna — 20 PLN/godz.</h3>
+    </div>
+
+    <div id="info-usluga" class="info-box">
+        <p>Kliknij na usługę, aby zobaczyć opis.</p>
+    </div>
+</section>
 <script>
 function pokazInfo(usluga) {
     let info = document.getElementById('info-usluga');
@@ -48,51 +61,40 @@ function pokazInfo(usluga) {
     }
 }
 </script>
-</body>
-</html>
-<section id="uslugi">
-    <h2>Usługi i ceny</h2>
+<section id="signup">
+    <h2>Zapisz się na trening</h2>
 
-    <div class="usluga" onclick="pokazInfo('silownia')">
-        <img src="https://images.unsplash.com/photo-1599058917217-9c2fa3ec73b0?auto=format&fit=crop&w=600&q=80" alt="Siłownia Titanium">
-        <h3>Siłownia — 50 PLN/godz.</h3>
-    </div>
+    <form id="formularz">
+        <label>
+            Imię i nazwisko:
+            <input type="text" id="name">
+        </label><br>
+        <label>
+            Trener:
+            <input type="checkbox" id="trainer"> Chcę trenera
+        </label><br>
+        <label>
+            Metoda płatności:
+            <select id="payment">
+                <option>Gotówka</option>
+                <option>Karta</option>
+            </select>
+        </label><br>
+        <button type="button" onclick="zapisz()">Zapisz się</button>
+    </form>
 
-    <div class="usluga" onclick="pokazInfo('zajecia')">
-        <img src="https://images.unsplash.com/photo-1594737625785-15702f4b0f2c?auto=format&fit=crop&w=600&q=80" alt="Zajęcia grupowe">
-        <h3>Zajęcia grupowe — 30 PLN/zaj.</h3>
-    </div>
-
-    <div class="usluga" onclick="pokazInfo('trener')">
-        <img src="https://images.unsplash.com/photo-1599058917217-9c2fa3ec73b0?auto=format&fit=crop&w=600&q=80" alt="Trener personalny">
-        <h3>Trener personalny — 100 PLN/godz.</h3>
-    </div>
-
-    <div class="usluga" onclick="pokazInfo('sauna')">
-        <img src="https://images.unsplash.com/photo-1586201375761-83865001a7e0?auto=format&fit=crop&w=600&q=80" alt="Sauna">
-        <h3>Sauna — 20 PLN/godz.</h3>
-    </div>
-
-    <!-- Blok z opisem -->
-    <div id="info-usluga" class="info-box">
-        <p>Kliknij na usługę, aby zobaczyć opis.</p>
-    </div>
+    <div id="info-zapis" style="margin-top:15px;"></div>
 </section>
-<form action="controller.php" method="post">
-    <label>
-        Imię i nazwisko:
-        <input type="text" name="name">
-    </label><br>
-    <label>
-        Trener:
-        <input type="checkbox" name="trainer"> Chcę trenera
-    </label><br>
-    <label>
-        Metoda płatności:
-        <select name="payment">
-            <option>Gotówka</option>
-            <option>Karta</option>
-        </select>
-    </label><br>
-    <button type="submit">Zapisz się</button>
-</form>    
+<script>
+function zapisz() {
+    const name = document.getElementById('name').value;
+    const trainer = document.getElementById('trainer').checked ? 'Tak' : 'Nie';
+    const payment = document.getElementById('payment').value;
+
+    const info = document.getElementById('info-zapis');
+    info.innerHTML = `<h3>Dziękujemy za zapisanie się!</h3>
+                      <p>Imię i nazwisko: ${name}</p>
+                      <p>Trener: ${trainer}</p>
+                      <p>Metoda płatności: ${payment}</p>`;
+}
+</script>
