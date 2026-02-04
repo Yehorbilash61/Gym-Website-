@@ -97,3 +97,24 @@ button:hover {
     margin-top: 15px;
     font-size: 16px;
 }
+<script>
+function pokazInfo(usluga) {
+    let info = document.getElementById('info-usluga');
+    switch(usluga) {
+        case 'silownia':
+            info.innerHTML = "<strong>Siłownia:</strong> Wyposażona w nowoczesne maszyny, strefa cardio i siłowa. Idealna do treningów samodzielnych.";
+            break;
+        case 'zajecia':
+            info.innerHTML = "<strong>Zajęcia grupowe:</strong> Yoga, Zumba, Pilates. Prowadzone przez certyfikowanych instruktorów według harmonogramu.";
+            break;
+        case 'trener':
+            info.innerHTML = "<strong>Trener personalny:</strong> Indywidualny plan treningowy, kontrola techniki ćwiczeń, motywacja.";
+            break;
+        case 'sauna':
+            info.innerHTML = "<strong>Sauna:</strong> Relaks po treningu, poprawa krążenia i redukcja stresu.";
+            break;
+        default:
+            info.innerHTML = "Kliknij na usługę, aby zobaczyć opis.";
+    }
+}
+</script>
