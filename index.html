@@ -47,12 +47,32 @@
     </section>
 </body>
 </html>
-<section id="services">
-    <h2>Usługi i ceny </h2>
-    <ul>
-        <li>Siłownia — 50 PLN/godzinę</li>
-        <li>Zajęcia grupowe— 30 PLN/zajęcie</li>
-        <li>Personalny trener— 100 PLN/godzinę</li>
-        <li>Sauna— 30PLN/godzinę</li>
-    </ul>
+<section id="uslugi">
+    <h2>Usługi i ceny</h2>
+
+    <div class="usluga" onclick="pokazInfo('silownia')">
+        <img src="https://images.unsplash.com/photo-1599058917217-9c2fa3ec73b0?auto=format&fit=crop&w=600&q=80" alt="Siłownia Titanium">
+        <h3>Siłownia — 50 PLN/godz.</h3>
+    </div>
+
+    <div class="usluga" onclick="pokazInfo('zajecia')">
+        <img src="https://images.unsplash.com/photo-1594737625785-15702f4b0f2c?auto=format&fit=crop&w=600&q=80" alt="Zajęcia grupowe">
+        <h3>Zajęcia grupowe — 30 PLN/zaj.</h3>
+    </div>
+
+    <div class="usluga" onclick="pokazInfo('trener')">
+        <img src="https://images.unsplash.com/photo-1599058917217-9c2fa3ec73b0?auto=format&fit=crop&w=600&q=80" alt="Trener personalny">
+        <h3>Trener personalny — 100 PLN/godz.</h3>
+    </div>
+
+    <div class="usluga" onclick="pokazInfo('sauna')">
+        <img src="https://images.unsplash.com/photo-1586201375761-83865001a7e0?auto=format&fit=crop&w=600&q=80" alt="Sauna">
+        <h3>Sauna — 20 PLN/godz.</h3>
+    </div>
+
+    <!-- Blok z opisem -->
+    <div id="info-usluga" class="info-box">
+        <p>Kliknij na usługę, aby zobaczyć opis.</p>
+    </div>
 </section>
+    
