@@ -97,24 +97,35 @@ button:hover {
     margin-top: 15px;
     font-size: 16px;
 }
-<script>
-function pokazInfo(usluga) {
-    let info = document.getElementById('info-usluga');
-    switch(usluga) {
-        case 'silownia':
-            info.innerHTML = "<strong>Siłownia:</strong> Wyposażona w nowoczesne maszyny, strefa cardio i siłowa. Idealna do treningów samodzielnych.";
-            break;
-        case 'zajecia':
-            info.innerHTML = "<strong>Zajęcia grupowe:</strong> Yoga, Zumba, Pilates. Prowadzone przez certyfikowanych instruktorów według harmonogramu.";
-            break;
-        case 'trener':
-            info.innerHTML = "<strong>Trener personalny:</strong> Indywidualny plan treningowy, kontrola techniki ćwiczeń, motywacja.";
-            break;
-        case 'sauna':
-            info.innerHTML = "<strong>Sauna:</strong> Relaks po treningu, poprawa krążenia i redukcja stresu.";
-            break;
-        default:
-            info.innerHTML = "Kliknij na usługę, aby zobaczyć opis.";
-    }
+/* Заголовок сайта */
+h1 {
+    text-align: center;
+    font-family: 'Impact', Arial, sans-serif; /* более выразительный шрифт */
+    font-weight: 900; /* максимально жирный */
+    background: linear-gradient(to right, #FFD700, #FFFFFF); /* желто-белый градиент */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 48px;
+    margin-top: 20px;
 }
-</script>
+
+/* Подзаголовки секций */
+h2 {
+    font-family: 'Verdana', sans-serif;
+    font-weight: bold;
+    color: #FFAA00; /* насыщенный жёлтый */
+    margin-bottom: 10px;
+}
+
+/* Текст в параграфах */
+p {
+    font-family: 'Tahoma', sans-serif; /* другой шрифт для контраста */
+    font-size: 16px;
+}
+
+/* Текст в блоке услуг */
+.usluga h3 {
+    font-family: 'Georgia', serif; /* шрифт с засечками для названия услуги */
+    font-weight: bold;
+    font-size: 18px;
+}
