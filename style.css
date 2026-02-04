@@ -58,3 +58,12 @@ button {
 button:hover {
     background-color: #333;
 }
+#services ul {
+    list-style-type: square; /* маленькие квадратики вместо стандартных точек */
+    padding-left: 20px;
+}
+
+#services li {
+    margin-bottom: 8px; /* отступ между услугами */
+    font-size: 16px;
+}
