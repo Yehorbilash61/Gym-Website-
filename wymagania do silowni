@@ -1,0 +1,42 @@
+A wymagania funkcionalne 
+
+1 oferty i promocje
+
+1.1 promocja administracyjna przy logowaniu
+1.1.1 po logowaniu będzie zniżka na administracyjny zbrór = -100%
+
+2 logowania konta 
+
+2.1 logowanie z pocztą 
+2.2 logowanie z hasłem 
+2.3 zapomniał(e/a)m hasło
+2.4 rejestracja z pocztą
+2.5 rejestracja z hasłem
+
+3 kontrola wyjść i wejść
+4 weryfikacja osoby rejestracyjnej
+5 strefy i wyposażenie
+
+6 karnety
+
+6.1 wybór różnych karnetów
+
+6.1.1 karnet 24/7
+6.1.2 karnet 24/7 + sauna 
+6.1.3 zaecie jednorazowe 
+
+6.2 
+
+
+7 ceny i płatności
+7.1 kupowanie karnetów 
+7.1.1 cena za karnet 24/7  = 130 zł
+7.1.2 cena za karnet 24/7 + sauna  = 180 zł
+7.1.3 cena za zajęcie jednorazowe  = 30 zł
+
+7.2 opłata administracyjna 
+7.2.1 opłata administracyjna przy zakupie pierwszego karnetu = 50 zł, dalej przy kupowaniu karnetu nie będzie sciągana kwota o rozmiarze 50 zł 
+7.2.2 ze zgodą z promocji 1.1.1 zniżka bedzie = -100%
+
+7.3 
+
