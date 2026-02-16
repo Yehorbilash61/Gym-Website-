@@ -14,8 +14,25 @@ A wymagania funkcionalne
 2.5 rejestracja z hasłem
 
 3 kontrola wyjść i wejść
+
+3.1 przy wejściu i wyjściu można będzie otwórzyć QR code 
+3.1.1 QR code będzie znajdował się w koncie 
+
 4 weryfikacja osoby rejestracyjnej
+
+4.1 podtwierdzenie osoby połnoletniej
+4.1.1 osoba połnoletnia musi przejść weryfikacje na robota 
+4.1.2 osoba połnoletnia musi dać swoje dane osobowe 
+
+4.2 podtwierdzenie osoby  nie połnoletniej
+4.2.1 c przejść weryfikacje robotową 
+4.2.2 osoba połnoletnia musi dac zgodę opiekuna prawnego
+
+
 5 strefy i wyposażenie
+5.1 strefa siłowni
+5.2 strefa relaksu
+5.3 strefa 
 
 6 karnety
 
