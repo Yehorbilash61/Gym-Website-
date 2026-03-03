@@ -1,68 +1,164 @@
-A wymagania funkcionalne 
+1️⃣ Oferty i promocje
+1.1 Promocja administracyjna przy pierwszym logowaniu
 
-1 oferty i promocje
+Opis funkcjonalny:
+Każdy nowo zarejestrowany użytkownik otrzymuje jednorazową promocję.
+Promocja dotyczy opłaty administracyjnej.
+Wysokość zniżki: 100% (czyli opłata administracyjna = 0 zł).
 
-1.1 promocja administracyjna przy logowaniu
-1.1.1 po logowaniu będzie zniżka na administracyjny zbrór = -100%
+Logika działania:
+System sprawdza w bazie danych, czy użytkownik już kupował karnet.
+Jeśli NIE → opłata administracyjna wynosi 0 zł.
+Jeśli TAK → opłata administracyjna nie jest naliczana ponownie.
 
-2 logowania konta 
+Wymagania techniczne:
+Kolumna w tabeli users: is_first_purchase
+System automatycznie zmienia wartość po pierwszym zakupie.
 
-2.1 logowanie z pocztą 
-2.2 logowanie z hasłem 
-2.3 zapomniał(e/a)m hasło
-2.4 rejestracja z pocztą
-2.5 rejestracja z hasłem
+2️⃣ System logowania i rejestracji
+2.1 Rejestracja użytkownika
 
-3 kontrola wyjść i wejść
+Użytkownik musi podać:
+Email
+Hasło
+Powtórzenie hasła
+Data urodzenia
+Akceptacja regulaminu
 
-3.1 przy wejściu i wyjściu można będzie otwórzyć QR code 
-3.1.1 QR code będzie znajdował się w koncie 
-3.1.1.1 muszę znaleść jak tworzyć QR code każdy raz kiedy będzie naciśnięty przycisk w koncie rozdział (QR code)
+Proces:
+Formularz HTML
+Walidacja danych (JavaScript + PHP)
+Sprawdzenie czy email już istnieje
+Hashowanie hasła (password_hash w PHP)
+Zapis do bazy danych
 
-4 weryfikacja osoby rejestracyjnej
+2.2 Logowanie
 
-4.1 podtwierdzenie osoby połnoletniej
-4.1.1 osoba połnoletnia musi przejść weryfikacje na robota 
-4.1.2 osoba połnoletnia musi dać swoje dane osobowe 
+Użytkownik podaje:
+Email
+Hasło
+System:
+Sprawdza email
+Weryfikuje hasło (password_verify)
+Tworzy sesję (SESSION w PHP)
+Przekierowuje do panelu użytkownika
 
-4.2 podtwierdzenie osoby  nie połnoletniej
-4.2.1 c przejść weryfikacje robotową 
-4.2.2 osoba połnoletnia musi dac zgodę opiekuna prawnego
+2.3 Zapomniałem hasła
+Formularz z podaniem email
+Wysłanie linku resetującego hasło (token zapisany w bazie)
+Ustawienie nowego hasła
 
+3️⃣ Kontrola wejść i wyjść (QR Code)
+3.1 System QR
 
-5 strefy i wyposażenie(na górze będzie przycisk)
+Każdy użytkownik posiada unikalny QR Code
+QR generowany na podstawie ID użytkownika
+QR widoczny w panelu użytkownika
 
-5.1 strefa siłowni
-5.1.1 będzie szczególny opis o strefie (siłownia)
+Działanie:
+Użytkownik loguje się
+Wchodzi w zakładkę "Mój QR"
+System generuje kod dynamicznie (biblioteka PHP)
+Kod służy do skanowania przy wejściu/wyjściu
 
+Wymagania techniczne:
+Tabela entries
+id
+user_id
+entry_time
+exit_time
+System zapisuje każdą wizytę.
 
-5.2 strefa relaksu
-5.2.1 będzie szczególny opis o strefie (relaks)
+4️⃣ Weryfikacja wieku
+4.1 Osoba pełnoletnia
+Sprawdzenie daty urodzenia
+Jeśli ≥ 18 lat → może kupić karnet
+CAPTCHA (ochrona przed botami)
 
-5.3 strefa sauna 
-5.3.1 będzie szczególny opis o strefie (sauna)
+4.2 Osoba niepełnoletnia
 
-6 karnety
+Musi zaznaczyć zgodę opiekuna
+Wprowadzić dane opiekuna:
+Imię
+Nazwisko
+Numer telefonu
+System zapisuje to w bazie.
 
-6.1 wybór różnych karnetów 
+5️⃣ Strefy siłowni
+Na górze strony będzie menu nawigacyjne.
 
-6.1.1 karnet 24/7
-6.1.2 karnet 24/7 + sauna 
-6.1.3 zaecie jednorazowe 
+5.1 Strefa siłowni
 
-6.2 przycisk "karnety"
-6.2.1 przycisk będzie znajdował się na górze gdzie można wybrać opcje różnych karnetów i będzie przysowało na inną stronę
+Opis sprzętu
+Zdjęcia
+Godziny otwarcia
 
+5.2 Strefa relaksu
 
-7 ceny i płatności 
-7.1 kupowanie karnetów 
-7.1.1 cena za karnet 24/7  = 130 zł
-7.1.2 cena za karnet 24/7 + sauna  = 180 zł
-7.1.3 cena za zajęcie jednorazowe  = 30 zł
+Opis strefy
+Regulamin
 
-7.2 opłata administracyjna 
-7.2.1 opłata administracyjna przy zakupie pierwszego karnetu = 50 zł, dalej przy kupowaniu karnetu nie będzie sciągana kwota o rozmiarze 50 zł 
-7.2.2 ze zgodą z promocji 1.1.1 zniżka bedzie = -100%
+5.3 Strefa sauna
 
-7.3 przycisk będzie znajdował się na górze gdzie można zobaczyć różne ceny 
+Opis
+Zasady korzystania
+
+6️⃣ Karnety
+6.1 Rodzaje karnetów
+
+Karnet 24/7 – 130 zł
+Karnet 24/7 + sauna – 180 zł
+Wejście jednorazowe – 30 zł
+
+Tabela passes:
+id
+name
+price
+description
+
+7️⃣ Zakup i płatności
+7.1 Proces zakupu
+
+Użytkownik wybiera karnet
+System sprawdza: czy to pierwszy zakup
+
+Dodaje opłatę administracyjną (jeśli dotyczy)
+Pokazuje podsumowanie
+Potwierdzenie zakupu
+
+Tabela purchases:
+id
+user_id
+pass_id
+price
+admin_fee
+purchase_date
+
+8️⃣ Ceny
+
+24/7 = 130 zł
+24/7 + sauna = 180 zł
+Jednorazowe = 30 zł
+Opłata administracyjna = 50 zł (tylko pierwszy zakup)
+
+9️⃣ Struktura bazy danych (minimum 5 tabel)
+
+users
+passes
+purchases
+entries
+guardian_data
+Relacje przez Primary Key i Foreign Key.
+
+🔟 Wymagania techniczne projektu
+
+HTML + CSS (oddzielny plik)
+JavaScript (walidacja)
+PHP (backend)
+SQL (baza danych)
+Hasła szyfrowane
+Ochrona przed SQL injection (prepared statements)
+Minimum 3 relacje między tabelami
+System sesji
+
 
