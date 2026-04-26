@@ -1,10 +1,10 @@
 <?php
+session_start();
 header("Content-Type: text/html; charset=UTF-8");
 
 // подключение к PostgreSQL
-$conn = pg_connect("host=localhost dbname=postgres user=postgres password=Jojoklar1!");
+$conn = pg_connect("host=127.0.0.1 port=5432 dbname=postgres user=postgres password=1234");
 
-// проверка подключения
 if (!$conn) {
     echo "Ошибка подключения к базе";
     exit;
@@ -16,16 +16,24 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // запрос к базе
-    $query = "SELECT * FROM table001 WHERE email='$email' AND password='$password'";
-    $result = pg_query($conn, $query);
+    // безопасный запрос
+    $query = "SELECT * FROM table001 WHERE email = $1 AND password = $2";
+    $result = pg_query_params($conn, $query, array($email, $password));
 
-    if (pg_num_rows($result) > 0) {
-        echo "УСПЕШНЫЙ ВХОД";
+    if ($result && pg_num_rows($result) > 0) {
+
+        // сохраняем пользователя в сессию
+        $_SESSION['user'] = $email;
+
+        // переход на страницу
+        header("Location: dashboard.php");
+        exit;
+
     } else {
-        echo "НЕПРАВИЛЬНЫЙ EMAIL ИЛИ ПАРОЛЬ";
+        echo "NIE PRAWIDLOWE HASLO LUB EMAIL";
     }
 
 } else {
     echo "Нет данных";
 }
+?>
