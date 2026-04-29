@@ -51,6 +51,7 @@ if ($membership) {
 <p>Email: <?php echo $user['email']; ?></p>
 <p>Wiek: <?php echo $user['age']; ?></p>
 
+
 <h3>Abonament</h3>
 <p>Status: <?php echo $status; ?></p>
 
