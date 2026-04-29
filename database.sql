@@ -27,19 +27,6 @@ CREATE TABLE qr_codes (
     code TEXT UNIQUE
 );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 INSERT INTO table001 (name, email, password, age)
 VALUES 
 ('Alex', 'alex@mail.com', '1234', 20),

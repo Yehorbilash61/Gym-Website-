@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['user'])) {
+    header("Location: index.html");
+    exit();
+}
+
 $conn = pg_connect("host=127.0.0.1 port=5432 dbname=postgres user=postgres password=1234");
 
 $query = "SELECT * FROM table001 ORDER BY id";

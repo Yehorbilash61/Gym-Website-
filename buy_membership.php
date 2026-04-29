@@ -9,6 +9,11 @@ if (!isset($_SESSION['user'])) {
 $conn = pg_connect("host=127.0.0.1 port=5432 dbname=postgres user=postgres password=1234");
 
 $email = $_SESSION['user'];
+
+if (!isset($_POST['type'])) {
+    exit("Brak typu abonamentu");
+}
+
 $type = $_POST['type'];
 
 // найти пользователя
@@ -36,7 +41,7 @@ if ($membership) {
             exit();
         }
     }
-}ate('Y-m-d');
+}
 
 if ($type == "monthly") {
     $new_end = date('Y-m-d', strtotime('+1 month'));
@@ -96,5 +101,5 @@ if ($membership) {
 
     pg_query_params($conn, $insert, [$user_id, $type, $start, $new_end]);
 }
-echo "Abonament kupiony!";
+header("Location: dashboard.php");
 exit();

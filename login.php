@@ -1,39 +1,37 @@
 <?php
 session_start();
-header("Content-Type: text/html; charset=UTF-8");
 
-// подключение к PostgreSQL
 $conn = pg_connect("host=127.0.0.1 port=5432 dbname=postgres user=postgres password=1234");
 
 if (!$conn) {
-    echo "Ошибка подключения к базе";
-    exit;
+    exit("Błąd połączenia z bazą.");
 }
 
-// проверяем есть ли данные
-if (isset($_POST['email']) && isset($_POST['password'])) {
+if (!isset($_POST['email']) || !isset($_POST['password'])) {
+    exit("Brak danych.");
+}
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+$email = trim($_POST['email']);
+$password = trim($_POST['password']);
 
-    // безопасный запрос
-    $query = "SELECT * FROM table001 WHERE email = $1 AND password = $2";
-    $result = pg_query_params($conn, $query, array($email, $password));
+$query = "SELECT * FROM table001 WHERE email = $1";
+$result = pg_query_params($conn, $query, [$email]);
 
-    if ($result && pg_num_rows($result) > 0) {
+if ($result && pg_num_rows($result) > 0) {
 
-        // сохраняем пользователя в сессию
+    $user = pg_fetch_assoc($result);
+
+    if (password_verify($password, $user['password'])) {
+
         $_SESSION['user'] = $email;
-
-        // переход на страницу
         header("Location: dashboard.php");
-        exit;
+        exit();
 
     } else {
-        echo "NIE PRAWIDLOWE HASLO LUB EMAIL";
+        echo "Nieprawidłowe hasło.";
     }
 
 } else {
-    echo "Нет данных";
+    echo "Nie znaleziono użytkownika.";
 }
 ?>
