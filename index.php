@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -22,13 +24,22 @@
     <button type="button" onclick="togglePassword()">👁</button>
 </div>
 
+<br>
+
+<a href="forgot.html">Zapomniałeś hasła?</a>
 <br><br>
 
-    <button type="submit">Zaloguj sie</button>
+  <button type="submit">Zaloguj sie</button>
+
+  <?php if (isset($_GET['error'])): ?>
+    <p style="color:lightcoral;">Nieprawidłowe hasło lub email</p>
+  <?php endif; ?>
+
+  <a href="register.html">Rejestracja</a>
 
 </form>
 
-<a href="register.html">Rejestracja</a>
+
 
 <script>
 function togglePassword() {
@@ -42,5 +53,8 @@ function togglePassword() {
 }
 </script>
 
+
+
 </body>
 </html>
+

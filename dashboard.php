@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION['user'])) {
-    header("Location: index.html");
+    header("Location: index.php");
     exit();
 }
 
@@ -16,6 +16,10 @@ $result = pg_query_params($conn, $query, [$email]);
 $user = pg_fetch_assoc($result);
 
 $user_id = $user['id'];
+
+$qr_query = "SELECT * FROM qr_codes WHERE user_id = $1";
+$qr_result = pg_query_params($conn, $qr_query, [$user_id]);
+$qr = pg_fetch_assoc($qr_result);
 
 $membership_query = "SELECT * FROM memberships WHERE user_id = $1";
 $membership_result = pg_query_params($conn, $membership_query, [$user_id]);
@@ -78,7 +82,14 @@ if ($membership) {
 </select>
 
 <button type="submit">Kup</button>
-</form>
+<h3>Twój QR kod</h3>
+
+<?php if ($qr): ?>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?data=<?php echo $qr['code']; ?>" />
+    <p><?php echo $qr['code']; ?></p>
+<?php else: ?>
+    <p>Brak QR kodu</p>
+<?php endif; ?>
 
 </body>
 </html>

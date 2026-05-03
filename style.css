@@ -1,13 +1,13 @@
 body {
     font-family: Arial;
-    background: #f2f2f2;
+    background: white;
     margin: 0;
 padding: 0;
 }
 
 h1 {
     text-align: center;
-    color: white;
+    color: yellow;
     padding: 15px;
     margin: 20px 0;
 }
@@ -15,7 +15,7 @@ h1 {
  form {
    margin:20px auto;
    width: 300px;
-    background: yellow;
+    background: green;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -49,3 +49,11 @@ button {
     padding: 10px;
     width: 45px;
 }
+
+
+
+
+
+
+
+

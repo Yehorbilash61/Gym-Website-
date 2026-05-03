@@ -40,6 +40,7 @@ pg_query_params($conn,
  VALUES ($1,$2)",
 [$user_id, $code]);
 
-header("Location: index.html");
+header("Location: index.php");
 exit();
+
 ?>

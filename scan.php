@@ -1,18 +1,23 @@
 <?php
 require 'config.php';
 
+$message = "";
+
 if (isset($_POST['code'])) {
 
-    $code = $_POST['code'];
+    $code = trim($_POST['code']);
 
     $query = "SELECT * FROM qr_codes WHERE code = $1";
     $result = pg_query_params($conn, $query, [$code]);
 
-    $qr = pg_fetch_assoc($result);
+    if ($result && pg_num_rows($result) > 0) {
 
-    if ($qr) {
-
+        $qr = pg_fetch_assoc($result);
         $user_id = $qr['user_id'];
+
+        $qr_query = "SELECT * FROM qr_codes WHERE user_id = $1";
+$qr_result = pg_query_params($conn, $qr_query, [$user_id]);
+$qr = pg_fetch_assoc($qr_result);
 
         $membership_query = "SELECT * FROM memberships WHERE user_id = $1";
         $membership_result = pg_query_params($conn, $membership_query, [$user_id]);
@@ -39,5 +44,4 @@ if (isset($_POST['code'])) {
 </form>
 
 <?php if (isset($message)): ?>
-<h2><?php echo $message; ?></h2>
-<?php endif; ?>
+<h2><?php echo $message; ?></h2><?php endif; ?>

@@ -28,10 +28,9 @@ if ($result && pg_num_rows($result) > 0) {
         exit();
 
     } else {
-        echo "Nieprawidłowe hasło.";
+       header("Location: index.php?error=1");
+exit();
     }
 
-} else {
-    echo "Nie znaleziono użytkownika.";
-}
+    }
 ?>
