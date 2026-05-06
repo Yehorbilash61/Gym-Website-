@@ -25,15 +25,8 @@ if ($data['expires_at'] < date('Y-m-d H:i:s')) {
 }
 
 $email = $data['email'];
-?>
 
-<form method="POST">
-    <input type="password" name="new_password" placeholder="Nowe hasło" required>
-    <button type="submit">Zmień hasło</button>
-     
-</form>
 
-<?php
 if (isset($_POST['new_password'])) {
 
     $new_password = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
