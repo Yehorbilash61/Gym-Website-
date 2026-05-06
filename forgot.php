@@ -1,25 +1,32 @@
 <?php
 require 'config.php';
 
-if (!isset($_POST['email'])) {
-    exit("Brak danych.");
-}
+if (isset($_POST['email'])) {
 
-$email = trim($_POST['email']);
+    $email = trim($_POST['email']);
 
-$query = "SELECT * FROM table001 WHERE email = $1";
-$result = pg_query_params($conn, $query, [$email]);
+//проверяем есть ли пользователь
+    $check = pg_query_params($conn,
+        "SELECT id FROM table001 WHERE email = $1",
+        [$email]
+    );
 
-if (pg_num_rows($result) > 0) {
+    if (pg_num_rows($check) == 0) {
+        exit("Nie znaleziono użytkownika");
+    }
 
-    header("Location: reset_password.php?email=$email");
-    exit();
+    // генерируем токен
+    $token = bin2hex(random_bytes(16));
+    $expires = date('Y-m-d H:i:s', strtotime('+15 minutes'));
 
-}
+    pg_query_params($conn,
+        "INSERT INTO password_resets (email, token, expires_at)
+         VALUES ($1, $2, $3)",
+        [$email, $token, $expires]
+    );
 
- else {
-header("Location: forgot.html");
-exit();
-
+    // пока просто выводим ссылку (вместо email)
+    echo "Kliknij link:<br>";
+    echo "<a href='reset_password.php?token=$token'>Resetuj hasło</a>";
 }
 ?>

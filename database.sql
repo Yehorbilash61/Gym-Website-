@@ -41,3 +41,11 @@ INSERT INTO qr_codes (user_id, code)
 VALUES
 (1, 'ABC123'),
 (2, 'XYZ789');
+
+
+CREATE TABLE password_resets (
+    id SERIAL PRIMARY KEY,
+    email TEXT,
+    token TEXT,
+    expires_at TIMESTAMP
+);

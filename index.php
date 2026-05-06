@@ -35,7 +35,7 @@
     <p style="color:lightcoral;">Nieprawidłowe hasło lub email</p>
   <?php endif; ?>
 
-  <a href="register.html">Rejestracja</a>
+  <a href="register.php">Rejestracja</a>
 
 </form>
 

@@ -1,22 +1,49 @@
 <?php
 require 'config.php';
 
-$email = $_GET['email'];
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-if (!isset($_POST['password'])) {
-    exit("Brak hasła.");
+if (!isset($_GET['token'])) {
+    exit("Brak tokena");
 }
 
-$newPassword = trim($_POST['password']);
-    $hash = password_hash($newPassword, PASSWORD_DEFAULT);
+$token = $_GET['token'];
 
-    $update = "UPDATE table001 SET password = $1 WHERE email = $2";
-    pg_query_params($conn, $update, [$hash, $email]);
+// ищем токен
+$query = pg_query_params($conn,
+    "SELECT * FROM password_resets WHERE token = $1",
+    [$token]
+);
 
-    header("Location: index.php");
-    exit();
+$data = pg_fetch_assoc($query);
+
+if (!$data) {
+    exit("Nieprawidłowy token");
+}
+
+// проверка времени
+if ($data['expires_at'] < date('Y-m-d H:i:s')) {
+    exit("Token wygasł");
+}
+
+$email = $data['email'];
+?>
+
+<form method="POST">
+    <input type="password" name="new_password" placeholder="Nowe hasło" required>
+    <button type="submit">Zmień hasło</button>
+     
+</form>
+
+<?php
+if (isset($_POST['new_password'])) {
+
+    $new_password = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
+
+    pg_query_params($conn,
+        "UPDATE table001 SET password = $1 WHERE email = $2",
+        [$new_password, $email]
+    );
+
+    echo "Hasło zmienione!";
 }
 ?>
 
@@ -29,15 +56,6 @@ $newPassword = trim($_POST['password']);
 </head>
 <body>
 
-<h1>Nowe Hasło</h1>
-
-<form method="POST">
-
-<input type="password" name="password" placeholder="Nowe hasło" required><br><br>
-
-<button type="submit">Zmień</button>
-
-</form>
 
 </body>
 </html>
